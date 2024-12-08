@@ -33,17 +33,26 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
           pdfUrl = response.data['fileUrl'];
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('PDF가 성공적으로 생성되었습니다!')),
+          SnackBar(content: Text('PDF가 성공적으로 생성되었습니다!',
+            style: TextStyle(
+            fontFamily: 'NotoSans',
+          ))),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('PDF 생성에 실패했습니다.')),
+          SnackBar(content: Text('PDF 생성에 실패했습니다.',
+            style: TextStyle(
+            fontFamily: 'NotoSans',
+          ))),
         );
       }
     } catch (e) {
       print('PDF 생성 실패: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('PDF 생성에 실패했습니다: $e')),
+        SnackBar(content: Text('PDF 생성에 실패했습니다: $e',
+          style: TextStyle(
+          fontFamily: 'NotoSans',
+        ))),
       );
     }
   }
@@ -54,7 +63,10 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
       html.window.open(pdfUrl!, '_blank');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('PDF가 아직 생성되지 않았습니다.')),
+        SnackBar(content: Text('PDF가 아직 생성되지 않았습니다.',
+          style: TextStyle(
+          fontFamily: 'NotoSans',
+        ))),
       );
     }
   }
@@ -67,7 +79,10 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
         ..click();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('PDF가 아직 생성되지 않았습니다.')),
+        SnackBar(content: Text('PDF가 아직 생성되지 않았습니다.',
+          style: TextStyle(
+          fontFamily: 'NotoSans',
+        ))),
       );
     }
   }
@@ -82,7 +97,10 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PDF 생성 완료'),
+        title: Text('PDF 생성 완료',
+          style: TextStyle(
+          fontFamily: 'NotoSans',
+        )),
       ),
       body: Center(
         child: Column(
@@ -90,18 +108,24 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
           children: [
             Text(
               'PDF가 성공적으로 생성되었습니다!',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'NotoSans'),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: _previewPdf,
-              child: Text('PDF 미리보기'),
+              child: Text('PDF 미리보기',
+                style: TextStyle(
+                  fontFamily: 'NotoSans',
+                  )),
             ),
             SizedBox(height: 15),
             ElevatedButton(
               onPressed: _downloadPdf,
-              child: Text('PDF 다운로드'),
+              child: Text('PDF 다운로드',
+                style: TextStyle(
+                  fontFamily: 'NotoSans',
+                  )),
             ),
             SizedBox(height: 30),
             ElevatedButton(
@@ -112,7 +136,10 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
                   ),
                 );
               },
-              child: Text('다음'),
+              child: Text('다음',
+                style: TextStyle(
+                  fontFamily: 'NotoSans',
+                  )),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               ),

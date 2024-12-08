@@ -27,11 +27,12 @@ class CategorySelectionScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '먼저, 카테고리를 설정해주세요!',
+              '작성할 고소장의 카테고리를 선택해주세요!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.indigo,
+                fontFamily: 'NotoSans',
               ),
             ),
             SizedBox(height: 20),
@@ -63,6 +64,7 @@ class CategorySelectionScreen extends StatelessWidget {
             fontSize: 18,
             fontWeight: FontWeight.w500,
             color: Colors.indigo,
+            fontFamily: 'NotoSans',
           ),
         ),
         trailing: Icon(Icons.arrow_forward_ios, color: Colors.indigo),

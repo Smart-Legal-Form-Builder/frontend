@@ -42,7 +42,10 @@ class _DocumentFormState extends State<DocumentForm> {
 
     if (!allFieldsFilled) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('모든 필드를 입력해주세요.')),
+        SnackBar(content: Text('모든 필드를 입력해주세요.',
+          style: TextStyle(
+          fontFamily: 'NotoSans',
+        ))),
       );
       return;
     }
@@ -63,7 +66,10 @@ class _DocumentFormState extends State<DocumentForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.category} 문서 작성'),
+        title: Text('${widget.category} 고소장 작성',
+          style: TextStyle(
+            fontFamily: 'NotoSans',
+          )),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -87,7 +93,11 @@ class _DocumentFormState extends State<DocumentForm> {
             ),
             ElevatedButton(
               onPressed: _onSubmit,
-              child: Text('고소장 생성'),
+              child: Text('고소장 생성',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'NotoSans',
+                )),
             ),
           ],
         ),

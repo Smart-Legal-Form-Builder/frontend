@@ -11,7 +11,10 @@ class PdfPreviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PDF 미리보기'),
+        title: Text('PDF 미리보기',
+          style: TextStyle(
+          fontFamily: 'NotoSans',
+        )),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
@@ -23,12 +26,20 @@ class PdfPreviewScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('PDF 파일을 불러오는 데 실패했습니다.'));
+            return Center(child: Text('PDF 파일을 불러오는 데 실패했습니다.',
+              style: TextStyle(
+              fontFamily: 'NotoSans',
+              )
+            ));
           } else {
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
-                child: Text(snapshot.data ?? 'PDF 내용이 없습니다.'),
+                child: Text(snapshot.data ?? 'PDF 내용이 없습니다.',
+                  style: TextStyle(
+                  fontFamily: 'NotoSans',
+                  )
+                ),
               ),
             );
           }

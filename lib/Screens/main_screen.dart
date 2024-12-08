@@ -1,45 +1,47 @@
 import 'package:flutter/material.dart';
 import 'category_selection_screen.dart'; // CategorySelectionScreen 이동을 위해 import
 
+
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      body: Center( // 화면 중앙에 정렬
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min, // 내용물만 차지하도록 크기 설정
           children: [
             Text(
               'LawReady',
-              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
                 color: Colors.indigo,
-                fontFamily: 'NotoSans',
+                fontFamily: 'RobotoBlack',
               ),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20), // 텍스트와 버튼 사이 간격
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigo,
-                padding: EdgeInsets.symmetric(vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => CategorySelectionScreen()),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategorySelectionScreen(),
+                  ),
                 );
               },
-              child: Text(
-                '문서 작성하러가기',
-                style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'NotoSans'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15), // 버튼 내부 여백
+                textStyle: TextStyle(fontSize: 20, fontFamily: 'NotoSans'), // 글자 스타일
+                backgroundColor: Colors.indigo, // 버튼 색상
+                foregroundColor: Colors.white,
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8), // 버튼 모서리 둥글게
+                ),
               ),
+              child: Text('고소장 작성하러 가기'),
             ),
           ],
         ),
@@ -47,4 +49,3 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
-

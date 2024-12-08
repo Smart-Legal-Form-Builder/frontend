@@ -12,8 +12,10 @@ class CompletionScreen extends StatelessWidget {
             Text(
               '수고하셨어요! 또 다른 문서가 필요하시면\n메인으로 돌아가기 버튼을 눌러주세요.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18),
-            ),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'NotoSans',
+              )),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -22,7 +24,10 @@ class CompletionScreen extends StatelessWidget {
                   (route) => false,
                 );
               },
-              child: Text('메인으로 돌아가기'),
+              child: Text('메인으로 돌아가기',
+                style: TextStyle(
+                  fontFamily: 'NotoSans',
+                )),
             ),
           ],
         ),

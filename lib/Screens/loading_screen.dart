@@ -45,7 +45,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
             SizedBox(height: 20),
             Text(
               '잠시만 기다려주세요...',
-              style: TextStyle(fontSize: 16),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'NotoSans',
+                )
             ),
           ],
         ),
