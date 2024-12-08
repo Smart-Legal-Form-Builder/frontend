@@ -1,45 +1,69 @@
-List<String> getQuestions(String category) {
-  switch (category) {
-    case '중고거래 사기':
-      return [
-        '피해자 본인의 이름은 무엇인가요?',
-        '거래하신 물품은 무엇인가요?',
-        '거래를 진행한 날짜와 방식을 알려주세요.',
-        '피해 금액은 얼마인가요?',
-        '어떤 문제가 발생했는지 구체적으로 설명해주세요.',
-        '상대방의 이름, 연락처, 아이디 또는 계좌 정보가 있나요? (선택)',
-        '거래 내역을 증명할 자료(채팅, 계좌 내역)가 있으신가요? (선택)',
-      ];
-    case '온라인 욕설':
-      return [
-        '피해자 본인의 이름은 무엇인가요?',
-        '욕설이나 모욕이 발생한 플랫폼을 알려주세요.',
-        '언제 욕설이 발생했나요? (날짜와 시간)',
-        '어떤 욕설이나 모욕적인 발언을 들으셨나요?',
-        '상대방의 아이디나 실명을 알고 계신가요? (선택)',
-        '관련 내용을 캡처한 자료가 있으신가요? (선택)',
-      ];
-    case '성희롱/성추행':
-      return [
-        '피해자 본인의 이름은 무엇인가요?',
-        '사건이 발생한 날짜와 장소는 어디인가요?',
-        '어떤 언어나 행동으로 성희롱·성추행을 당하셨나요?',
-        '가해자의 이름 또는 직위를 알고있다면 적어주세요. (선택)',
-        '본인은 사건 당시 어떤 반응을 보이셨나요? (선택)',
-        '사건을 입증할 증거가 있다면 적어주세요. (선택)',
-      ];
+import '../utils/form_questions.dart';
 
-    case '폭행/상해':
-      return [
-        '피해자 본인의 이름은 무엇인가요?',
-        '사건이 발생한 날짜와 장소는 어디인가요?',
-        '어떤 방식으로 폭행이 이루어졌나요?',
-        '가해자의 신원이나 특징을 알고 계신가요?',
-        '신체적 피해는 어느 정도인가요?',
-        '폭행 당시 목격자가 있었나요? (선택)',
-      ];
-    
-    default:
-      return [];
+final Map<String, List<Map<String, String>>> categoryFields = {
+  '중고거래 사기': [
+    {'label': '피해자 본인의 이름', 'key': 'complainant_name'},
+    {'label': '주민등록번호', 'key': 'complainant_id'},
+    {'label': '주소', 'key': 'complainant_address'},
+    {'label': '전화번호', 'key': 'complainant_phone'},
+    {'label': '거래 물품', 'key': 'transaction_item'},
+    {'label': '거래 일자', 'key': 'transaction_date'},
+    {'label': '사이트명', 'key': 'site_name'},
+    {'label': '피해 금액', 'key': 'amount'},
+    {'label': '상대방 이름', 'key': 'defendant_name'},
+    {'label': '상대방 전화번호', 'key': 'defendant_phone'},
+    {'label': '고소 날짜', 'key': 'report_date'},
+    {'label': '관할 경찰서', 'key': 'police_station'},
+  ],
+  '온라인 욕설': [
+    {'label': '피해자 본인의 이름', 'key': 'complainant_name'},
+    {'label': '주민등록번호', 'key': 'complainant_id'},
+    {'label': '닉네임', 'key': 'complainant_nickname'},
+    {'label': '전화번호', 'key': 'complainant_phone'},
+    {'label': '주소', 'key': 'complainant_address'},
+    {'label': '가해자 닉네임', 'key': 'defendant_nickname'},
+    {'label': '사건 일자', 'key': 'incident_date'},
+    {'label': '웹사이트', 'key': 'website'},
+    {'label': '욕설 내용', 'key': 'offensive_comment'},
+    {'label': '고소 날짜', 'key': 'report_date'},
+    {'label': '관할 경찰서', 'key': 'police_station'},
+  ],
+  '성희롱': [
+    {'label': '피해자 본인의 이름', 'key': 'complainant_name'},
+    {'label': '주민등록번호', 'key': 'complainant_id'},
+    {'label': '주소', 'key': 'complainant_address'},
+    {'label': '전화번호', 'key': 'complainant_phone'},
+    {'label': '가해자와의 관계', 'key': 'relationship1'},
+    {'label': '가해자 이름', 'key': 'defendant_name'},
+    {'label': '가해자 주소', 'key': 'defendant_address'},
+    {'label': '가해자 전화번호', 'key': 'defendant_phone'},
+    {'label': '사건 일자', 'key': 'incident_date'},
+    {'label': '사건 장소', 'key': 'incident_location'},
+    {'label': '사건 당시 같이 있던 사람들의 수', 'key': 'people'},
+    {'label': '문제 발언', 'key': 'offensive_comment'},
+    {'label': '고소 날짜', 'key': 'report_date'},
+    {'label': '관할 경찰서', 'key': 'police_station'},
+  ],
+  '강제추행': [
+    {'label': '피해자 본인의 이름', 'key': 'complainant_name'},
+    {'label': '주민등록번호', 'key': 'complainant_id'},
+    {'label': '주소', 'key': 'complainant_address'},
+    {'label': '전화번호', 'key': 'complainant_phone'},
+    {'label': '가해자 이름', 'key': 'defendant_name'},
+    {'label': '사건 일자', 'key': 'incident_date'},
+    {'label': '사건 장소', 'key': 'incident_location'},
+    {'label': '가해자와의 관계', 'key': 'relationship2'},
+    {'label': '피해 사실', 'key': 'facts'},
+    {'label': '고소 날짜', 'key': 'report_date'},
+    {'label': '관할 경찰서', 'key': 'police_station'},
+  ],
+};
+
+/// 선택한 카테고리의 질문 목록을 반환하는 함수
+List<String> getQuestions(String category) {
+  final fields = categoryFields[category];
+  if (fields != null) {
+    return fields.map((field) => field['label']!).toList();
   }
+  return [];
 }

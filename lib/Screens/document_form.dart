@@ -5,7 +5,7 @@ import '../utils/form_questions.dart'; // 질문 관련 유틸리티 가져오�
 class DocumentForm extends StatefulWidget {
   final String category;
 
-  DocumentForm(this.category);
+  DocumentForm({required this.category}); // 생성자에서 required 추가
 
   @override
   _DocumentFormState createState() => _DocumentFormState();
@@ -21,19 +21,36 @@ class _DocumentFormState extends State<DocumentForm> {
   }
 
   void _initializeControllers() {
-    final questions = getQuestions(widget.category); // 질문 목록 가져오기
-    for (var question in questions) {
-      controllers[question] = TextEditingController();
+    final questions = categoryFields[widget.category];
+    if (questions != null) {
+      for (var question in questions) {
+        controllers[question['key']!] = TextEditingController();
+      }
     }
   }
 
+  String _getLabelForKey(String key) {
+    final questions = categoryFields[widget.category];
+    if (questions != null) {
+      return questions.firstWhere((q) => q['key'] == key)['label']!;
+    }
+    return '';
+  }
+
   void _onSubmit() {
-    // 사용자가 입력한 데이터를 Map으로 변환
+    bool allFieldsFilled = controllers.values.every((controller) => controller.text.isNotEmpty);
+
+    if (!allFieldsFilled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('모든 필드를 입력해주세요.')),
+      );
+      return;
+    }
+
     final data = {
       for (var entry in controllers.entries) entry.key: entry.value.text,
     };
 
-    // 로딩 화면으로 이동하며 입력 데이터 전달
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => LoadingScreen(
         category: widget.category,
@@ -60,7 +77,7 @@ class _DocumentFormState extends State<DocumentForm> {
                     child: TextField(
                       controller: entry.value,
                       decoration: InputDecoration(
-                        labelText: entry.key,
+                        labelText: _getLabelForKey(entry.key),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -78,4 +95,3 @@ class _DocumentFormState extends State<DocumentForm> {
     );
   }
 }
-

@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'document_form.dart'; // DocumentForm 이동을 위해 import
 
 class CategorySelectionScreen extends StatelessWidget {
+  final List<String> categories = [
+    '중고거래 사기',
+    '온라인 욕설',
+    '성희롱',
+    '강제추행'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,13 +36,11 @@ class CategorySelectionScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: ListView(
-                children: [
-                  _buildCategoryTile(context, '중고거래 사기'),
-                  _buildCategoryTile(context, '온라인 욕설'),
-                  _buildCategoryTile(context, '성희롱/성추행'),
-                  _buildCategoryTile(context, '폭행/상해'),
-                ],
+              child: ListView.builder(
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  return _buildCategoryTile(context, categories[index]);
+                },
               ),
             ),
           ],
@@ -63,7 +68,9 @@ class CategorySelectionScreen extends StatelessWidget {
         trailing: Icon(Icons.arrow_forward_ios, color: Colors.indigo),
         onTap: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => DocumentForm(title)),
+            MaterialPageRoute(
+              builder: (context) => DocumentForm(category: title),
+            ),
           );
         },
       ),

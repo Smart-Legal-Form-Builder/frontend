@@ -1,10 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart'; // HTTP 요청을 위해 Dio 패키지 사용
+import 'dart:html' as html; // 웹에서 파일 다운로드 및 열기를 위해 필요
 import 'completion_screen.dart'; // CompletionScreen import 추가
 
-class PdfResultScreen extends StatelessWidget {
-  final String pdfPath;
+class PdfResultScreen extends StatefulWidget {
+  final String category;
+  final Map<String, String> userDetails;
 
-  PdfResultScreen({required this.pdfPath});
+  PdfResultScreen({required this.category, required this.userDetails});
+
+  @override
+  _PdfResultScreenState createState() => _PdfResultScreenState();
+}
+
+class _PdfResultScreenState extends State<PdfResultScreen> {
+  String? pdfUrl;
+
+  // PDF 생성 요청
+  Future<void> _generatePdf() async {
+    try {
+      final dio = Dio();
+      final response = await dio.post(
+        'http://localhost:5000/api/generate-complaint',
+        data: {
+          'category': widget.category,
+          'userDetails': widget.userDetails,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          pdfUrl = response.data['fileUrl'];
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('PDF가 성공적으로 생성되었습니다!')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('PDF 생성에 실패했습니다.')),
+        );
+      }
+    } catch (e) {
+      print('PDF 생성 실패: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('PDF 생성에 실패했습니다: $e')),
+      );
+    }
+  }
+
+  // PDF 미리보기 기능 (브라우저 새 탭에서 열기)
+  void _previewPdf() {
+    if (pdfUrl != null) {
+      html.window.open(pdfUrl!, '_blank');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('PDF가 아직 생성되지 않았습니다.')),
+      );
+    }
+  }
+
+  // PDF 다운로드 기능 (웹 전용)
+  void _downloadPdf() {
+    if (pdfUrl != null) {
+      final anchor = html.AnchorElement(href: pdfUrl!)
+        ..setAttribute('download', 'complaint.pdf')
+        ..click();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('PDF가 아직 생성되지 않았습니다.')),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _generatePdf(); // 화면이 로드될 때 PDF 생성 요청 보내기
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +84,9 @@ class PdfResultScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('PDF 생성 완료'),
       ),
-      body: Center( // Center 위젯으로 중앙 정렬
+      body: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min, // 내용 크기만큼만 Column 확장
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               'PDF가 성공적으로 생성되었습니다!',
@@ -23,24 +95,17 @@ class PdfResultScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // PDF 미리보기 로직 추가
-                print('PDF 미리보기: $pdfPath');
-              },
+              onPressed: _previewPdf,
               child: Text('PDF 미리보기'),
             ),
             SizedBox(height: 15),
             ElevatedButton(
-              onPressed: () {
-                // PDF 다운로드 로직 추가
-                print('PDF 다운로드: $pdfPath');
-              },
+              onPressed: _downloadPdf,
               child: Text('PDF 다운로드'),
             ),
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // '다음' 버튼 클릭 시 CompletionScreen으로 이동
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => CompletionScreen(),
@@ -58,4 +123,3 @@ class PdfResultScreen extends StatelessWidget {
     );
   }
 }
-
