@@ -19,6 +19,7 @@ class MainScreen extends StatelessWidget {
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
                 color: Colors.indigo,
+                fontFamily: 'NotoSans',
               ),
             ),
             SizedBox(height: 30),
@@ -37,7 +38,7 @@ class MainScreen extends StatelessWidget {
               },
               child: Text(
                 '문서 작성하러가기',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'NotoSans'),
               ),
             ),
           ],

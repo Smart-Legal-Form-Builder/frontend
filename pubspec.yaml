@@ -27,12 +27,18 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: RobotoBlack
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Medium.ttf
 
 
 
 
-
-#name: my_first_app
+  #name: my_first_app
 #description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
