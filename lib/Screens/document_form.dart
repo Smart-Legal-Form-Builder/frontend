@@ -80,7 +80,13 @@ class _DocumentFormState extends State<DocumentForm> {
           style: TextStyle(
             fontFamily: 'NotoSans',
             color: Colors.white,
-          )),
+          ),
+        ),
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

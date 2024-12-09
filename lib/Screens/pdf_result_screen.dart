@@ -103,7 +103,13 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
           style: TextStyle(
           fontFamily: 'NotoSans',
           color: Colors.white,
-        )),
+          ),
+        ),
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Center(
         child: Column(
