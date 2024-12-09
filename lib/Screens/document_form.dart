@@ -37,6 +37,14 @@ class _DocumentFormState extends State<DocumentForm> {
     return '';
   }
 
+  String _getPlaceHolderForKey(String key) {
+    final questions = categoryFields[widget.category];
+    if (questions != null) {
+      return questions.firstWhere((q) => q['key'] == key)['placeholder']!;
+    }
+    return '';
+  }
+
   void _onSubmit() {
     bool allFieldsFilled = controllers.values.every((controller) => controller.text.isNotEmpty);
 
@@ -65,10 +73,13 @@ class _DocumentFormState extends State<DocumentForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
         title: Text('${widget.category} 고소장 작성',
           style: TextStyle(
             fontFamily: 'NotoSans',
+            color: Colors.white,
           )),
       ),
       body: Padding(
@@ -84,6 +95,15 @@ class _DocumentFormState extends State<DocumentForm> {
                       controller: entry.value,
                       decoration: InputDecoration(
                         labelText: _getLabelForKey(entry.key),
+                        labelStyle: TextStyle(
+                          color: Colors.indigo,
+                          fontFamily: 'NotoSans',
+                        ),
+                        hintText: _getPlaceHolderForKey(entry.key),
+                        hintStyle: TextStyle(
+                          color: Color(0xFFA7AFC0),
+                          fontFamily: 'NotoSans',
+                        ),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -92,11 +112,13 @@ class _DocumentFormState extends State<DocumentForm> {
               ),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
               onPressed: _onSubmit,
               child: Text('고소장 생성',
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: 'NotoSans',
+                  color: Colors.white,
                 )),
             ),
           ],

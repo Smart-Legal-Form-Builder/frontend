@@ -96,10 +96,13 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
         title: Text('PDF 생성 완료',
           style: TextStyle(
           fontFamily: 'NotoSans',
+          color: Colors.white,
         )),
       ),
       body: Center(
@@ -108,26 +111,30 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
           children: [
             Text(
               'PDF가 성공적으로 생성되었습니다!',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'NotoSans'),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'NotoSans'),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
               onPressed: _previewPdf,
               child: Text('PDF 미리보기',
                 style: TextStyle(
                   fontFamily: 'NotoSans',
+                  color: Colors.white,
                   )),
             ),
             SizedBox(height: 15),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
               onPressed: _downloadPdf,
               child: Text('PDF 다운로드',
                 style: TextStyle(
                   fontFamily: 'NotoSans',
+                  color: Colors.white,
                   )),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
@@ -139,8 +146,10 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
               child: Text('다음',
                 style: TextStyle(
                   fontFamily: 'NotoSans',
+                  color: Colors.white,
                   )),
               style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               ),
             ),

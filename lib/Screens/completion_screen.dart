@@ -5,6 +5,7 @@ class CompletionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -14,10 +15,12 @@ class CompletionScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 18,
+                  fontWeight: FontWeight.bold,
                   fontFamily: 'NotoSans',
               )),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
               onPressed: () {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => MainScreen()),
@@ -27,6 +30,7 @@ class CompletionScreen extends StatelessWidget {
               child: Text('메인으로 돌아가기',
                 style: TextStyle(
                   fontFamily: 'NotoSans',
+                  color: Colors.white,
                 )),
             ),
           ],
