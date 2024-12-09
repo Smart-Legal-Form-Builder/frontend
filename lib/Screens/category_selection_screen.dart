@@ -129,41 +129,5 @@ class CategorySelectionScreen extends StatelessWidget {
       ),
     );
   }
-  /*
-  Widget _buildCategoryTile(BuildContext context, String title, String explain) {
-    return Card(
-      color: Colors.indigo,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      margin: EdgeInsets.symmetric(vertical: 10),
-      elevation: 2,
-      child: ListTile(
-        title: RichText(
-          text: TextSpan(
-            text: title, // default text style
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              fontFamily: 'NotoSans',
-            ),
-            children: <TextSpan>[
-              TextSpan(text: explain, style: TextStyle(fontSize: 12)),
-            ],
-          ),
-          textAlign: TextAlign.center,
-        ),
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => DocumentForm(category: title),
-            ),
-          );
-        },
-      ),
-    );
-  }
-  */
 }
 
