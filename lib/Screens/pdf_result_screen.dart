@@ -110,28 +110,34 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'PDF가 성공적으로 생성되었습니다!',
+              '고소장이 성공적으로 생성되었습니다!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'NotoSans'),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
-              onPressed: _previewPdf,
-              child: Text('PDF 미리보기',
-                style: TextStyle(
-                  fontFamily: 'NotoSans',
-                  color: Colors.white,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 21),
+              ),
+              onPressed: _downloadPdf,
+              child: Text('PDF로 다운받기',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    color: Colors.white,
                   )),
             ),
             SizedBox(height: 15),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
-              onPressed: _downloadPdf,
-              child: Text('PDF 다운로드',
-                style: TextStyle(
-                  fontFamily: 'NotoSans',
-                  color: Colors.white,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              ),
+              onPressed: _previewPdf,
+              child: Text('사건 리포트 보기',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    color: Colors.white,
                   )),
             ),
             SizedBox(height: 50),

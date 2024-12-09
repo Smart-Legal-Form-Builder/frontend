@@ -52,6 +52,7 @@ class CategorySelectionScreen extends StatelessWidget {
 
   Widget _buildCategoryTile(BuildContext context, String title) {
     return Card(
+      color: Colors.indigo,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -63,11 +64,12 @@ class CategorySelectionScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w500,
-            color: Colors.indigo,
+            color: Colors.white,
             fontFamily: 'NotoSans',
           ),
+          textAlign: TextAlign.center,
         ),
-        trailing: Icon(Icons.arrow_forward_ios, color: Colors.indigo),
+        trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
