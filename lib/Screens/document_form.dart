@@ -105,27 +105,40 @@ class _DocumentFormState extends State<DocumentForm> {
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: groupedQuestions.entries.map((entry) {
-                  return Card(
-                    margin: EdgeInsets.symmetric(vertical: 8.0),
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+      ),      body: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              children: groupedQuestions.entries.map((entry) {
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.indigo, width: 1.5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 6,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                      dividerColor: Colors.transparent,
                     ),
-                    clipBehavior: Clip.antiAlias,
                     child: ExpansionTile(
-                      backgroundColor: Colors.white,
                       collapsedBackgroundColor: Color(0xffDADFFF),
+                      backgroundColor: Colors.white,
                       title: Text(
                         entry.key,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, fontFamily: 'NotoSans'),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          fontFamily: 'NotoSans',
+                        ),
                       ),
                       children: entry.value.map((question) {
                         return Padding(
@@ -149,89 +162,28 @@ class _DocumentFormState extends State<DocumentForm> {
                         );
                       }).toList(),
                     ),
-                  );
-                }).toList(),
-              ),
+                  ),
+                );
+              }).toList(),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
-              onPressed: _onSubmit,
-              child: Text('고소장 생성',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'NotoSans',
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  /*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: Text('${widget.category} 고소장 작성',
-          style: TextStyle(
-            fontFamily: 'NotoSans',
-            color: Colors.white,
           ),
-        ),
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: controllers.entries.map((entry) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: TextField(
-                      controller: entry.value,
-                      decoration: InputDecoration(
-                        labelText: _getLabelForKey(entry.key),
-                        labelStyle: TextStyle(
-                          color: Colors.indigo,
-                          fontFamily: 'NotoSans',
-                        ),
-                        hintText: _getPlaceHolderForKey(entry.key),
-                        hintStyle: TextStyle(
-                          color: Color(0xFFA7AFC0),
-                          fontFamily: 'NotoSans',
-                        ),
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  );
-                }).toList(),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.indigo,
+            ),
+            onPressed: _onSubmit,
+            child: Text(
+              '고소장 생성',
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'NotoSans',
+                color: Colors.white,
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
-              onPressed: _onSubmit,
-              child: Text('고소장 생성',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'NotoSans',
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
+    ),
     );
   }
-  */
 }
