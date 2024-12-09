@@ -30,7 +30,6 @@ class CategorySelectionScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -60,9 +59,9 @@ class CategorySelectionScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 40),
+            Spacer(),
             Text(
-              '[제출 전 주의사항]',
+              '[작성 전 주의사항]',
               style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -78,6 +77,7 @@ class CategorySelectionScreen extends StatelessWidget {
               fontFamily: 'NotoSans',
               ),
             ),
+            SizedBox(height: 30),
           ],
         ),
       ),
