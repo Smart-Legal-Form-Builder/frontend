@@ -63,7 +63,7 @@ class CategorySelectionScreen extends StatelessWidget {
             Text(
               '[작성 전 주의사항]',
               style: TextStyle(
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
               color: Colors.indigo,
               fontFamily: 'NotoSans',
@@ -73,11 +73,11 @@ class CategorySelectionScreen extends StatelessWidget {
             Text(
               '허위사실에 기반한 고소는 무고죄로 처벌받을 수 있음을 고지합니다.',
               style: TextStyle(
-              fontSize: 14,
+              fontSize: 18,
               fontFamily: 'NotoSans',
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 50),
           ],
         ),
       ),
