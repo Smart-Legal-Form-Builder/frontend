@@ -70,6 +70,106 @@ class _DocumentFormState extends State<DocumentForm> {
     ));
   }
 
+  Map<String, List<Map<String, String>>> _groupQuestionsByCategory(
+      List<Map<String, String>> questions) {
+    final Map<String, List<Map<String, String>>> groupedQuestions = {};
+    for (var question in questions) {
+      // 카테고리를 기준으로 질문 그룹화 (임의로 '기타' 카테고리 추가 가능)
+      final category = question['category'] ?? '기타';
+      if (!groupedQuestions.containsKey(category)) {
+        groupedQuestions[category] = [];
+      }
+      groupedQuestions[category]!.add(question);
+    }
+    return groupedQuestions;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final questions = categoryFields[widget.category] ?? [];
+    final groupedQuestions = _groupQuestionsByCategory(questions);
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        title: Text(
+          '${widget.category} 고소장 작성',
+          style: TextStyle(
+            fontFamily: 'NotoSans',
+            color: Colors.white,
+          ),
+        ),
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                children: groupedQuestions.entries.map((entry) {
+                  return Card(
+                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: ExpansionTile(
+                      backgroundColor: Colors.white,
+                      collapsedBackgroundColor: Color(0xffDADFFF),
+                      title: Text(
+                        entry.key,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, fontFamily: 'NotoSans'),
+                      ),
+                      children: entry.value.map((question) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: controllers[question['key']],
+                            decoration: InputDecoration(
+                              labelText: question['label'],
+                              labelStyle: TextStyle(
+                                color: Colors.indigo,
+                                fontFamily: 'NotoSans',
+                              ),
+                              hintText: question['placeholder'],
+                              hintStyle: TextStyle(
+                                color: Color(0xFFA7AFC0),
+                                fontFamily: 'NotoSans',
+                              ),
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo,),
+              onPressed: _onSubmit,
+              child: Text('고소장 생성',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'NotoSans',
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  /*
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,4 +233,5 @@ class _DocumentFormState extends State<DocumentForm> {
       ),
     );
   }
+  */
 }
