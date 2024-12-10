@@ -11,7 +11,7 @@ class CompletionScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '수고하셨어요! 또 다른 문서가 필요하시면\n메인으로 돌아가기 버튼을 눌러주세요.',
+              '수고하셨습니다! 또 다른 고소장 생성이 필요하시면\n메인으로 돌아가기 버튼을 눌러주세요.',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 18,

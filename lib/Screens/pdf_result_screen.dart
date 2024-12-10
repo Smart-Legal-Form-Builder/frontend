@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart'; // HTTP 요청을 위해 Dio 패키지 사용
 import 'dart:html' as html; // 웹에서 파일 다운로드 및 열기를 위해 필요
 import 'completion_screen.dart'; // CompletionScreen import 추가
+import 'analyzing_criminal.dart';  // 분석 화면 import 추가
 
 class PdfResultScreen extends StatefulWidget {
   final String category;
@@ -21,7 +22,7 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
     try {
       final dio = Dio();
       final response = await dio.post(
-        'http://localhost:5000/api/generate-complaint',
+        'http://localhost:3000/api/generate-complaint',
         data: {
           'category': widget.category,
           'userDetails': widget.userDetails,
@@ -139,7 +140,13 @@ class _PdfResultScreenState extends State<PdfResultScreen> {
                 backgroundColor: Colors.indigo,
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               ),
-              onPressed: _previewPdf,
+              onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AnalyzingCriminal(),
+                    ),
+                  );
+                },
               child: Text('사건 리포트 보기',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
