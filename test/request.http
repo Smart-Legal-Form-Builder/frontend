@@ -1,0 +1,20 @@
+POST http://localhost:5000/api/generate-complaint
+Content-Type: application/json
+
+{
+  "category": "중고거래 사기",
+  "userDetails": {
+    "complainant_name": "홍길동",
+    "complainant_id": "123456-1234567",
+    "complainant_address": "서울시 강남구",
+    "complainant_phone": "010-1234-5678",
+    "transaction_item": "노트북",
+    "transaction_date": "2024-06-01",
+    "site_name": "중고나라",
+    "amount": "500000",
+    "defendant_name": "이몽룡",
+    "defendant_phone": "010-8765-4321",
+    "report_date": "2024-06-08",
+    "police_station": "강남경찰서"
+  }
+}
